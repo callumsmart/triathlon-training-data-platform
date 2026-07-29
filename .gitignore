@@ -1,7 +1,24 @@
+# Python environment
 .venv/
-.env
+
+# Python cache
 __pycache__/
 *.pyc
+
+# Environment variables
+.env
+
+# Data files
 data/raw/
 data/processed/
 *.duckdb
+
+# dbt
+target/
+dbt_packages/
+
+# Streamlit
+.streamlit/
+
+# Local tooling
+.agents/

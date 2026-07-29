@@ -1,7 +1,15 @@
-# Triathlon Training Data Platform
+Welcome to your new dbt project!
 
-A personal data engineering and analytics engineering project that ingests training data, transforms it using dbt, and produces insights across running, swimming and cycling.
+### Using the starter project
 
-## Planned Architecture
+Try running the following commands:
+- dbt run
+- dbt test
 
-Strava API → Python ingestion → DuckDB → dbt → Data quality tests → Analytical models → Training intelligence
+
+### Resources:
+- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
+- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
+- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
+- Find [dbt events](https://events.getdbt.com) near you
+- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
