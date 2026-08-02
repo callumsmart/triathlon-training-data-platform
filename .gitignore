@@ -16,6 +16,7 @@ data/processed/
 # dbt
 target/
 dbt_packages/
+logs/
 
 # Streamlit
 .streamlit/

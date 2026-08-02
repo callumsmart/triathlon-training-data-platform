@@ -64,7 +64,7 @@ SELECT
         2
     ) AS total_aerobic_training_effect
 
-FROM int_training_sessions
+FROM {{ ref('int_training_sessions') }}
 
 GROUP BY
     DATE_TRUNC('week', activity_date)

@@ -11,7 +11,7 @@ SELECT
     max_heart_rate,
     aerobic_training_effect
 
-FROM fct_running_activities
+FROM {{ ref('fct_running_activities') }}
 
 UNION ALL
 
@@ -28,7 +28,7 @@ SELECT
     max_heart_rate,
     aerobic_training_effect
 
-FROM fct_cycling_activities
+FROM {{ ref('fct_cycling_activities') }}
 
 UNION ALL
 
@@ -45,4 +45,4 @@ SELECT
     max_heart_rate,
     aerobic_training_effect
 
-FROM fct_swimming_activities
+FROM {{ ref('fct_swimming_activities') }}

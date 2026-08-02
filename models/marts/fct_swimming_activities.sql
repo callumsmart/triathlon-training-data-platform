@@ -20,6 +20,6 @@ SELECT
     avg_stroke_rate,
     number_of_laps
 
-FROM stg_activities
+FROM {{ ref('stg_activities') }}
 
 WHERE sport_category = 'swimming'

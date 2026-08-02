@@ -21,6 +21,6 @@ SELECT
     total_ascent,
     total_descent
 
-FROM stg_activities
+FROM {{ ref('stg_activities') }}
 
 WHERE sport_category = 'cycling'
