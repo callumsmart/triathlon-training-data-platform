@@ -1,5 +1,11 @@
 select
-    md5(cast(row_number() over () as varchar)) as activity_id,
+
+    {{ dbt_utils.generate_surrogate_key([
+        '"Activity Type"',
+        '"Date"',
+        '"Title"',
+        '"Time"'
+    ]) }} as activity_id,
 
     try_cast("Date" as date) as activity_date,
     "Activity Type" as activity_type,
@@ -19,31 +25,33 @@ select
         else "Distance"
     end as distance_km,
 
-    
-    (
-        split_part("Time", ':', 1)::INTEGER * 3600 +
-        split_part("Time", ':', 2)::INTEGER * 60 +
-        split_part("Time", ':', 3)::INTEGER
-    ) as duration_seconds,
+    {{ time_to_seconds('"Time"') }} as duration_seconds,
 
-    (
-        split_part("Moving Time", ':', 1)::INTEGER * 3600 +
-        split_part("Moving Time", ':', 2)::INTEGER * 60 +
-        split_part("Moving Time", ':', 3)::INTEGER
-    ) as moving_time_seconds,
+    {{ time_to_seconds('"Moving Time"') }} as moving_time_seconds,
 
-    (
-        split_part("Elapsed Time", ':', 1)::INTEGER * 3600 +
-        split_part("Elapsed Time", ':', 2)::INTEGER * 60 +
-        split_part("Elapsed Time", ':', 3)::INTEGER
-    ) as elapsed_time_seconds,
-    
+    {{ time_to_seconds('"Elapsed Time"') }} as elapsed_time_seconds,
+
     "Avg HR" as avg_heart_rate,
     "Max HR" as max_heart_rate,
-    "Aerobic TE" as aerobic_training_effect,
+    try_cast("Aerobic TE" as double) as aerobic_training_effect,
 
-    "Avg Pace" as avg_pace_seconds_per_km,
-    "Avg GAP" as avg_gap_seconds_per_km,
+    case
+        when "Activity Type" = 'Running'
+            then {{ pace_to_seconds('"Avg Pace"') }}
+        else null
+    end as avg_pace_seconds_per_km,
+
+    case
+        when "Activity Type" in ('Pool Swim', 'Open Water Swimming')
+            then {{ pace_to_seconds('"Avg Pace"') }}
+        else null
+    end as avg_pace_seconds_per_100m,
+
+    case
+        when "Activity Type" = 'Running'
+            then {{ pace_to_seconds('"Avg GAP"') }}
+        else null
+    end as avg_gap_seconds_per_km,
 
     "Avg Stride Length" as avg_stride_length_m,
     "Avg Vertical Ratio" as avg_vertical_ratio,
@@ -64,10 +72,6 @@ select
     "Avg. Swolf" as avg_swolf,
     "Avg Stroke Rate" as avg_stroke_rate,
     "Number of Laps" as number_of_laps,
-    "Best Lap Time" as best_lap_time,
-
-    "Avg Pace" as avg_pace_seconds_per_100m,
-
-    *
+    "Best Lap Time" as best_lap_time
 
 from raw_garmin_activities

@@ -16,13 +16,8 @@ def main():
     )
 
     run_step(
-        "STAGE ACTIVITIES",
-        ["python", "src/transformations/stage_activities.py"],
-    )
-
-    run_step(
-        "BUILD DATA MODELS",
-        ["python", "src/models/run_models.py"],
+        "BUILD DBT MODELS",
+        ["dbt", "build"],
     )
 
     print("\nPipeline completed successfully.")

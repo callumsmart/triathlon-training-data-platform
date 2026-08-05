@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: stg_activities
+    description: Cleaned and standardised Garmin activities.
+
+    columns:
+      - name: activity_id
+        description: Unique identifier generated from activity attributes.
+        data_type: varchar
+        tests:
+          - unique
+          - not_null
+
+      - name: activity_date
+        description: Date the activity took place.
+        data_type: date
+        tests:
+          - not_null
+
+      - name: activity_type
+        description: Original Garmin activity type.
+        data_type: varchar
+
+      - name: title
+        description: Garmin activity title.
+        data_type: varchar
+
+      - name: favorite
+        description: Whether the activity was marked as a favourite in Garmin.
+        data_type: boolean
+
+      - name: sport_category
+        description: Standardised sport category used for downstream models.
+        data_type: varchar
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - running
+                  - cycling
+                  - swimming
+                  - other
+
+      - name: distance_km
+        description: Activity distance converted into kilometres.
+        data_type: double
+        tests:
+          - not_null
+
+      - name: duration_seconds
+        description: Total activity duration converted into seconds.
+        data_type: integer
+        tests:
+          - not_null
+
+      - name: moving_time_seconds
+        description: Moving time converted into seconds.
+        data_type: integer
+
+      - name: elapsed_time_seconds
+        description: Elapsed time converted into seconds.
+        data_type: integer
+
+      - name: avg_heart_rate
+        description: Average heart rate during activity.
+        data_type: double
+
+      - name: max_heart_rate
+        description: Maximum heart rate during activity.
+        data_type: double
+
+      - name: aerobic_training_effect
+        description: Garmin aerobic training effect score.
+        data_type: double
+
+      - name: avg_pace_seconds_per_km
+        description: Running pace converted into seconds per kilometre.
+        data_type: integer
+
+      - name: avg_pace_seconds_per_100m
+        description: Swimming pace converted into seconds per 100 metres.
+        data_type: integer
+
+      - name: avg_gap_seconds_per_km
+        description: Running grade adjusted pace converted into seconds per kilometre.
+        data_type: integer
