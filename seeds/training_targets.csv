@@ -1,0 +1,4 @@
+athlete_id,sport,sessions_per_week,target_hours_per_week
+callum,swim,2,1.5
+callum,bike,2,2.5
+callum,run,3,2.5

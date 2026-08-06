@@ -1,0 +1,8 @@
+athlete_id,day_of_week,available,preferred_sport,max_duration_minutes
+callum,monday,true,run,60
+callum,tuesday,true,bike,60
+callum,wednesday,true,swim,35
+callum,thursday,true,run,60
+callum,friday,true,swim,60
+callum,saturday,true,bike,150
+callum,sunday,false,,0

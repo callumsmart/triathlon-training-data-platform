@@ -1,0 +1,73 @@
+athlete:
+  id: callum
+
+  race:
+    name: Sprint Triathlon
+    date: 2026-10-03
+
+    distances:
+      swim_km: 0.75
+      bike_km: 20
+      run_km: 5
+
+    target:
+      finish_time_minutes: null
+
+training_preferences:
+  sessions_per_week:
+    swim: 2
+    bike: 2
+    run: 3
+
+  weekly_targets:
+    swim_hours: 1.5
+    bike_hours: 2.5
+    run_hours: 2.5
+
+  intensity_distribution:
+    easy_percent: 70
+    hard_percent: 30
+
+schedule:
+  monday:
+    available: true
+    preferred_sport: run
+    max_duration_minutes: 60
+
+  tuesday:
+    available: true
+    preferred_sport: bike
+    max_duration_minutes: 60
+
+  wednesday:
+    available: true
+    preferred_sport: swim
+    max_duration_minutes: 35
+
+  thursday:
+    available: true
+    preferred_sport: run
+    max_duration_minutes: 60
+
+  friday:
+    available: true
+    preferred_sport: swim
+    max_duration_minutes: 60
+
+  saturday:
+    available: true
+    preferred_sport: bike
+    max_duration_minutes: 150
+
+  sunday:
+    available: false
+
+training_phase:
+  current_phase: build
+
+constraints:
+  injuries:
+    - none
+
+  limitations:
+    - avoid consecutive hard run days

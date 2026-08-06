@@ -85,3 +85,60 @@ models:
       - name: avg_gap_seconds_per_km
         description: Running grade adjusted pace converted into seconds per kilometre.
         data_type: integer
+
+  - name: stg_athlete_profile
+    description: Athlete profile and race configuration.
+
+    columns:
+
+      - name: athlete_id
+        tests:
+          - not_null
+          - unique
+
+      - name: race_date
+        tests:
+          - not_null
+
+      - name: current_phase
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - base
+                  - build
+                  - peak
+                  - taper
+                  - recovery
+
+  - name: stg_training_targets
+    description: Weekly training targets for each sport.
+
+    columns:
+
+      - name: athlete_id
+        description: Unique athlete identifier.
+        tests:
+          - not_null
+
+      - name: sport
+        description: Sport the target relates to.
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - swim
+                  - bike
+                  - run
+
+      - name: sessions_per_week
+        data_type: integer
+        description: Target number of weekly sessions.
+        tests:
+          - not_null
+
+      - name: target_hours_per_week
+        data_type: double
+        description: Target weekly training volume in hours.
+        tests:
+          - not_null

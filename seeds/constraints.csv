@@ -1,0 +1,3 @@
+athlete_id,constraint_type,constraint_description
+callum,training,avoid consecutive hard run days
+callum,injury,none

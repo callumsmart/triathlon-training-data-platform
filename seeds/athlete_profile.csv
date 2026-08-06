@@ -1,0 +1,2 @@
+athlete_id,race_name,race_date,swim_distance_km,bike_distance_km,run_distance_km,target_finish_time_minutes,current_phase
+callum,Sprint Triathlon,2026-10-03,0.75,20,5,,build
