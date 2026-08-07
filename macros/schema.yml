@@ -142,3 +142,39 @@ models:
         description: Target weekly training volume in hours.
         tests:
           - not_null
+
+  - name: mart_training_readiness
+    description: Weekly training readiness metrics for each athlete.
+
+    columns:
+
+      - name: athlete_id
+        tests:
+          - not_null
+
+      - name: weeks_to_race
+        tests:
+          - not_null
+
+      - name: total_training_hours
+        tests:
+          - not_null
+
+  - name: mart_training_risk_flags
+    description: Weekly training risk flags for each athlete.
+
+    columns:
+
+      - name: athlete_id
+        tests:
+          - not_null
+
+
+  - name: mart_training_recommendations
+    description: Weekly training recommendations for each athlete.
+
+    columns:
+
+      - name: athlete_id
+        tests:
+          - not_null
